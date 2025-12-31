@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const upload = require('../middleware/uploadMiddleware');
-const { uploadImage } = require('../config/cloudinary');
-const fs = require('fs');
+const { uploadImageFromBuffer } = require('../config/cloudinary');
 
 router.post('/', upload.single('file'), async (req, res) => {
     if (!req.file) {
@@ -10,10 +9,7 @@ router.post('/', upload.single('file'), async (req, res) => {
     }
 
     try {
-        const result = await uploadImage(req.file.path);
-
-        // Delete local file after upload
-        fs.unlinkSync(req.file.path);
+        const result = await uploadImageFromBuffer(req.file.buffer);
 
         res.json({
             message: 'Upload successful',

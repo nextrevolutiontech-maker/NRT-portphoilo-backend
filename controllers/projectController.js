@@ -1,6 +1,5 @@
 const db = require('../db');
-const { uploadImage } = require('../config/cloudinary');
-const fs = require('fs');
+const { uploadImageFromBuffer } = require('../config/cloudinary');
 
 exports.createProject = async (req, res) => {
     const { title, industry, challenge, solution, results } = req.body;
@@ -13,9 +12,8 @@ exports.createProject = async (req, res) => {
     try {
         // Handle Image Upload
         if (req.file) {
-            const uploadResult = await uploadImage(req.file.path);
+            const uploadResult = await uploadImageFromBuffer(req.file.buffer);
             imageUrl = uploadResult.secure_url;
-            fs.unlinkSync(req.file.path); // Cleanup local file
         }
 
         // Parse results if it comes as a stringified array from frontend
@@ -76,10 +74,9 @@ exports.updateProject = async (req, res) => {
         let paramCount = 6;
 
         if (req.file) {
-            const uploadResult = await uploadImage(req.file.path);
+            const uploadResult = await uploadImageFromBuffer(req.file.buffer);
             updateQuery += `, image_url = $${paramCount}`;
             values.push(uploadResult.secure_url);
-            fs.unlinkSync(req.file.path);
             paramCount++;
         }
 
