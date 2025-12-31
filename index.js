@@ -18,7 +18,8 @@ app.use(cors({
     origin: [
         "http://localhost:5173",
         "http://localhost:3000",
-        "https://nrt-portphoilo.vercel.app"
+        "https://nrt-portphoilo.vercel.app",
+        "https://next-revolution-tech.vercel.app"
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"]
