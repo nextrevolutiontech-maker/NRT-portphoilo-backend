@@ -25,9 +25,10 @@ app.use('/api/testimonials', require('./routes/testimonialRoutes'));
 
 
 // --- Static File Serving ---
-// Serve static files from the React frontend app
-const frontendPath = path.join(__dirname, '../NRT FRONTEND/dist');
-app.use(express.static(frontendPath));
+// The frontend is deployed separately on Vercel.
+// We do not serve static files from here in production.
+// const frontendPath = path.join(__dirname, '../NRT FRONTEND/dist');
+// app.use(express.static(frontendPath));
 
 // API Routes
 app.get('/api/health', async (req, res) => {
