@@ -18,7 +18,7 @@ exports.sendContactEmail = async (req, res) => {
 
         const mailOptions = {
             from: `"${name}" <${email}>`, // sender address
-            to: process.env.EMAIL_USER, // list of receivers (the business owner)
+            to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER, // Send to Admin (Support Email)
             replyTo: email,
             subject: `New Inquiry from ${name} - ${company || 'Portfolio Website'}`,
             text: `

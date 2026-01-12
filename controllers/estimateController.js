@@ -29,7 +29,7 @@ exports.sendEstimateEmail = async (req, res) => {
 
         const mailOptions = {
             from: `"NRT Estimator" <${process.env.EMAIL_USER}>`,
-            to: process.env.EMAIL_USER, // Send to Admin
+            to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER, // Send to Admin
             subject: `New Project Estimate Request ($${total})`,
             text: `
         New Estimate Request
