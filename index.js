@@ -29,6 +29,7 @@ app.use('/api/upload', uploadRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/estimate', require('./routes/estimateRoutes'));
 app.use('/api/services', require('./routes/serviceRoutes'));
 app.use('/api/testimonials', require('./routes/testimonialRoutes'));
 
